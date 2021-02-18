@@ -1,5 +1,3 @@
-<?php
-
 class MySQL {
 
 	public $conn;
@@ -98,7 +96,17 @@ class MySQL {
 		$i = 0;
 		foreach ($conditions as $key => $value)
 		{
-			if(substr($value, 0, 1) === '<')
+			if(substr($value, 0, 2) === '<=')
+			{
+				$escape_data[$i] = str_replace('<=', '', $value);
+				$escape_string[$i] = $key.' <= ?';
+			}
+			else if(substr($value, 0, 2) === '>=')
+			{
+				$escape_data[$i] = str_replace('>=', '', $value);
+				$escape_string[$i] = $key.' >= ?';
+			}
+			else if(substr($value, 0, 1) === '<')
 			{
 				$escape_data[$i] = str_replace('<', '', $value);
 				$escape_string[$i] = $key.' < ?';
