@@ -56,7 +56,7 @@ OR
 ```php
 $response = $sql->put(
         array('Alex', 35),
-       'test1'
+        'test1'
     );
 ```
 
