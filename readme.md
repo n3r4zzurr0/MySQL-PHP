@@ -4,17 +4,17 @@ A simple class-based PHP layer over regular MySQL queries. It was developed for 
 ## Installation
 
 Include the class in your code:
-```
+```php
 require('mysql.class.php');
 ```
 
 Connect to your database using the PDO interface:
-```
+```php
 $conn = new PDO('mysql:host=localhost;dbname=test', 'root', '');
 ```
 
 Declare an object for the MySQL class and you're good to go.
-```
+```php
 $sql = new MySQL($conn);
 ```
 
@@ -38,7 +38,7 @@ Let's say we have a table named "test1" with two columns, "name" `VARCHAR(50)` a
 ```
 ###### INSERT EXAMPLES
 
-```
+```php
 $response = $sql->put(
         array(
             'name' => 'Mike',
@@ -53,7 +53,7 @@ if($response)
 }
 ```
 OR
-```
+```php
 $response = $sql->put(
         array('Alex', 35),
        'test1'
@@ -63,7 +63,7 @@ $response = $sql->put(
 ###### SELECT EXAMPLES
 
 1) Get all names with age = 42
-```
+```php
 var_dump($sql->get('name', 'test1', array('age' => '42'), -1, -1));
 ```
 Output:
@@ -72,7 +72,7 @@ array(1) { [0]=> string(3) "Rob" }
 ```
 
 2) Get all names with age > 45
-```
+```php
 var_dump($sql->get('name', 'test1', array('age' => '>45'), -1, -1));
 ```
 Output:
@@ -81,7 +81,7 @@ array(2) { [0]=> string(5) "Lemmy" [1]=> string(8) "Kid Rock" }
 ```
 
 3) Get all names with age < 40
-```
+```php
 var_dump($sql->get('name', 'test1', array('age' => '<40'), -1, -1));
 ```
 Output:
@@ -90,7 +90,7 @@ array(1) { [0]=> string(4) "Alex" }
 ```
 
 4) Get everything from a table
-```
+```php
 var_dump($sql->get('*', 'test1', array(1 => 1), -1, -1));
 ```
 Output:
@@ -99,7 +99,7 @@ array(5) { [0]=> array(4) { ["name"]=> string(4) "Mike" [0]=> string(4) "Mike" [
 ```
 
 5) Get sum of all ages
-```
+```php
 var_dump($sql->get('SUM(age)', 'test1', array(1 => 1), -1, -1));
 ```
 Output:
@@ -108,7 +108,7 @@ array(1) { [0]=> string(3) "241" }
 ```
 
 6) Count all rows
-```
+```php
 var_dump($sql->get('COUNT(*)', 'test1', array(1 => 1), -1, -1));
 ```
 Output:
@@ -117,7 +117,7 @@ array(1) { [0]=> string(1) "5" }
 ```
 
 7) Count all rows with age <= 44
-```
+```php
 var_dump($sql->get('COUNT(*)', 'test1', array('age' => '<=44'), -1, -1));
 ```
 Output:
